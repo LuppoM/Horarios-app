@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hchocomodelo &mdash; documentación de Python - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">Hchocomodelo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para Hchocomodelo</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="Modelohchoco"><a class="viewcode-back" href="../Hchocomodelo.html#Hchocomodelo.Modelohchoco">[documentos]</a><span></span><span class="k">class</span> <span class="nc">Modelohchoco</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conexion</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span> <span class="o">=</span> <span class="n">conexion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operarios_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># {id: nombre}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operarios_asignados</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># {semana: set(operarios)}</span>
+
+        <span class="c1"># Cargar lista completa de operarios al iniciar</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cargar_operarios</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Modelohchoco.cargar_operarios"><a class="viewcode-back" href="../Hchocomodelo.html#Hchocomodelo.Modelohchoco.cargar_operarios">[documentos]</a>    <span class="k">def</span> <span class="nf">cargar_operarios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT id, operario FROM modymoi ORDER BY operario ASC&quot;</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operarios_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="Modelohchoco.obtener_operarios"><a class="viewcode-back" href="../Hchocomodelo.html#Hchocomodelo.Modelohchoco.obtener_operarios">[documentos]</a>    <span class="k">def</span> <span class="nf">obtener_operarios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">operarios_dict</span></div>
+
+<div class="viewcode-block" id="Modelohchoco.obtener_operarios_asignados_en_otro_sector"><a class="viewcode-back" href="../Hchocomodelo.html#Hchocomodelo.Modelohchoco.obtener_operarios_asignados_en_otro_sector">[documentos]</a>    <span class="k">def</span> <span class="nf">obtener_operarios_asignados_en_otro_sector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semana</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">semana</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operarios_asignados</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">operarios_asignados</span><span class="p">[</span><span class="n">semana</span><span class="p">]</span>
+
+        <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT operario</span>
+<span class="s2">            FROM modymoi</span>
+<span class="s2">            WHERE semana=? AND operario != &#39;&#39; AND sector != &#39;&#39;</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">semana</span><span class="p">,))</span>
+        <span class="n">asignados</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operarios_asignados</span><span class="p">[</span><span class="n">semana</span><span class="p">]</span> <span class="o">=</span> <span class="n">asignados</span>
+        <span class="k">return</span> <span class="n">asignados</span></div>
+
+<div class="viewcode-block" id="Modelohchoco.obtener_datos_semana"><a class="viewcode-back" href="../Hchocomodelo.html#Hchocomodelo.Modelohchoco.obtener_datos_semana">[documentos]</a>    <span class="k">def</span> <span class="nf">obtener_datos_semana</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semana</span><span class="p">):</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            SELECT id, operario, Horario, Sector</span>
+<span class="s2">            FROM modymoi</span>
+<span class="s2">            WHERE semana=? AND Planta=&#39;Chocolates&#39;</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">semana</span><span class="p">,))</span>
+        <span class="k">return</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Modelohchoco.guardar_operario"><a class="viewcode-back" href="../Hchocomodelo.html#Hchocomodelo.Modelohchoco.guardar_operario">[documentos]</a>    <span class="k">def</span> <span class="nf">guardar_operario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_val</span><span class="p">,</span> <span class="n">operario</span><span class="p">,</span> <span class="n">horario</span><span class="p">,</span> <span class="n">sector</span><span class="p">,</span> <span class="n">semana</span><span class="p">):</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            UPDATE modymoi</span>
+<span class="s2">            SET operario=?, Horario=?, Sector=?, Planta=&#39;golosinas&#39;, semana=?</span>
+<span class="s2">            WHERE id=?</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">operario</span><span class="p">,</span> <span class="n">horario</span><span class="p">,</span> <span class="n">sector</span><span class="p">,</span> <span class="n">semana</span><span class="p">,</span> <span class="n">id_val</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="c1"># Actualizar diccionarios locales</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operarios_dict</span><span class="p">[</span><span class="n">id_val</span><span class="p">]</span> <span class="o">=</span> <span class="n">operario</span>
+        <span class="k">if</span> <span class="n">semana</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operarios_asignados</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">operarios_asignados</span><span class="p">[</span><span class="n">semana</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">operario</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Modelohchoco.limpiar_operario"><a class="viewcode-back" href="../Hchocomodelo.html#Hchocomodelo.Modelohchoco.limpiar_operario">[documentos]</a>    <span class="k">def</span> <span class="nf">limpiar_operario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_val</span><span class="p">):</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            UPDATE modymoi</span>
+<span class="s2">            SET horario=&#39;&#39;, sector=&#39;&#39;, planta=&#39;&#39;</span>
+<span class="s2">            WHERE id=?</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">id_val</span><span class="p">,))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="c1"># Actualizar diccionarios locales</span>
+        <span class="n">operario</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">operarios_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">id_val</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">operario</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">semana</span><span class="p">,</span> <span class="n">asignados</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operarios_asignados</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">asignados</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">operario</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor .</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

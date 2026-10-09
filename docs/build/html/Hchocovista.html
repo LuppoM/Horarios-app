@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hchocovista module &mdash; documentación de Python - </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Hchocovista module</a><ul>
+<li><a class="reference internal" href="#Hchocovista.Vistahchoco"><code class="docutils literal notranslate"><span class="pre">Vistahchoco</span></code></a><ul>
+<li><a class="reference internal" href="#Hchocovista.Vistahchoco.agregar_fila"><code class="docutils literal notranslate"><span class="pre">Vistahchoco.agregar_fila()</span></code></a></li>
+<li><a class="reference internal" href="#Hchocovista.Vistahchoco.crear_scrollable_frame"><code class="docutils literal notranslate"><span class="pre">Vistahchoco.crear_scrollable_frame()</span></code></a></li>
+<li><a class="reference internal" href="#Hchocovista.Vistahchoco.crear_sector_frame"><code class="docutils literal notranslate"><span class="pre">Vistahchoco.crear_sector_frame()</span></code></a></li>
+<li><a class="reference internal" href="#Hchocovista.Vistahchoco.crear_sector_frames"><code class="docutils literal notranslate"><span class="pre">Vistahchoco.crear_sector_frames()</span></code></a></li>
+<li><a class="reference internal" href="#Hchocovista.Vistahchoco.crear_top_bar"><code class="docutils literal notranslate"><span class="pre">Vistahchoco.crear_top_bar()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hchocovista module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Hchocovista.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-Hchocovista">
+<span id="hchocovista-module"></span><h1>Hchocovista module<a class="headerlink" href="#module-Hchocovista" title="Enlace permanente a este encabezado"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Hchocovista.Vistahchoco">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Hchocovista.</span></span><span class="sig-name descname"><span class="pre">Vistahchoco</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controlador</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Hchocovista.html#Vistahchoco"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#Hchocovista.Vistahchoco" title="Enlazar permanentemente con esta definición"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Toplevel</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Hchocovista.Vistahchoco.agregar_fila">
+<span class="sig-name descname"><span class="pre">agregar_fila</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operario</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nombres_operarios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Hchocovista.html#Vistahchoco.agregar_fila"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#Hchocovista.Vistahchoco.agregar_fila" title="Enlazar permanentemente con esta definición"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Hchocovista.Vistahchoco.crear_scrollable_frame">
+<span class="sig-name descname"><span class="pre">crear_scrollable_frame</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Hchocovista.html#Vistahchoco.crear_scrollable_frame"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#Hchocovista.Vistahchoco.crear_scrollable_frame" title="Enlazar permanentemente con esta definición"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Hchocovista.Vistahchoco.crear_sector_frame">
+<span class="sig-name descname"><span class="pre">crear_sector_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turno</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Hchocovista.html#Vistahchoco.crear_sector_frame"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#Hchocovista.Vistahchoco.crear_sector_frame" title="Enlazar permanentemente con esta definición"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Hchocovista.Vistahchoco.crear_sector_frames">
+<span class="sig-name descname"><span class="pre">crear_sector_frames</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Hchocovista.html#Vistahchoco.crear_sector_frames"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#Hchocovista.Vistahchoco.crear_sector_frames" title="Enlazar permanentemente con esta definición"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Hchocovista.Vistahchoco.crear_top_bar">
+<span class="sig-name descname"><span class="pre">crear_top_bar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Hchocovista.html#Vistahchoco.crear_top_bar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#Hchocovista.Vistahchoco.crear_top_bar" title="Enlazar permanentemente con esta definición"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor .</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

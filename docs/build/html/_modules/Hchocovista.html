@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hchocovista &mdash; documentación de Python - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">Hchocovista</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para Hchocovista</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>
+<span class="kn">from</span> <span class="nn">conexion</span> <span class="kn">import</span> <span class="n">obtener_ruta_icono</span>
+
+<div class="viewcode-block" id="Vistahchoco"><a class="viewcode-back" href="../Hchocovista.html#Hchocovista.Vistahchoco">[documentos]</a><span class="k">class</span> <span class="nc">Vistahchoco</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">controlador</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span> <span class="o">=</span> <span class="n">controlador</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Horarios chocolates&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;1920x1080&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="n">obtener_ruta_icono</span><span class="p">(</span><span class="s2">&quot;icono.ico&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transient</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grab_set</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">semana_var</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sector_frames</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filas_widgets</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Sectores y turnos de chocolates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sectores</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PLANTA DE PASTA&quot;</span><span class="p">,</span> <span class="s2">&quot;TROQUELADO&quot;</span><span class="p">,</span> <span class="s2">&quot;LUSTRADO&quot;</span><span class="p">,</span> <span class="s2">&quot;BOILER&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;GRAGEADOS&quot;</span><span class="p">,</span> <span class="s2">&quot;ELABORACION DE RAMA&quot;</span><span class="p">,</span> <span class="s2">&quot;GRANEL&quot;</span><span class="p">,</span> <span class="s2">&quot;PLARINE/SOLICH&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;TURRON FINO FIESTA&quot;</span><span class="p">,</span> <span class="s2">&quot;MOLDEO DE TABLETAS&quot;</span><span class="p">,</span> <span class="s2">&quot;ENVASADO DE CARRUCEL&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;FLOW - PACK&quot;</span><span class="p">,</span> <span class="s2">&quot;GBA&quot;</span><span class="p">,</span> <span class="s2">&quot;ESTUCHADO MANUAL&quot;</span><span class="p">,</span> <span class="s2">&quot;MOLDEO DE PASCUAS&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;PELADO DE CONFITES /HUEVOS&quot;</span><span class="p">,</span> <span class="s2">&quot;REPUJADO Y ESTUCHADO&quot;</span><span class="p">,</span> <span class="s2">&quot;RELLENOS&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;VERTICAL VOLUMETRICA Y BALANZA&quot;</span><span class="p">,</span> <span class="s2">&quot;AWEMA&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;ELABORACION DE RELLENOS&quot;</span><span class="p">,</span> <span class="s2">&quot;RELEVOS&quot;</span><span class="p">,</span> <span class="s2">&quot;PERSONAL CON CARPETAS MEDICAS&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;PERSONAL DE VACACIONES&quot;</span><span class="p">,</span> <span class="s2">&quot;SUPERVISORES&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sectores_especiales</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SEMIELABORADOS&quot;</span><span class="p">,</span> <span class="s2">&quot;CARGA DATOS&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">turnos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;06:00 a 14:00&quot;</span><span class="p">,</span> <span class="s2">&quot;14:00 a 22:00&quot;</span><span class="p">,</span> <span class="s2">&quot;22:00 a 06:00&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">turnos_especiales</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;07:00 a 15:00&quot;</span><span class="p">,</span> <span class="s2">&quot;08:00 a 16:00&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_top_bar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_scrollable_frame</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_sector_frames</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Vistahchoco.crear_top_bar"><a class="viewcode-back" href="../Hchocovista.html#Hchocovista.Vistahchoco.crear_top_bar">[documentos]</a>    <span class="k">def</span> <span class="nf">crear_top_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">bg_color</span> <span class="o">=</span> <span class="s2">&quot;#ffffff&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_bar</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="n">bg_color</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_bar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_bar</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Exportar a PDF&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">exportar_a_pdf</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_bar</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Guardar&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">guardar_datos</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_bar</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Cerrar&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">destroy</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_bar</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Semana:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Segoe UI&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;bold&quot;</span><span class="p">),</span>
+                 <span class="n">bg</span><span class="o">=</span><span class="n">bg_color</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;#004080&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">semana_combobox</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_bar</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">semana_var</span><span class="p">,</span>
+                                            <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Segoe UI&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;bold&quot;</span><span class="p">),</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">semana_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">semana_combobox</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">54</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">semana_combobox</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">obtener_semana_actual</span><span class="p">()))</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_bar</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Cargar semana&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">cargar_semana</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vistahchoco.crear_scrollable_frame"><a class="viewcode-back" href="../Hchocovista.html#Hchocovista.Vistahchoco.crear_scrollable_frame">[documentos]</a>    <span class="k">def</span> <span class="nf">crear_scrollable_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">bg_color</span> <span class="o">=</span> <span class="s2">&quot;#ffffff&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contenedor</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contenedor</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contenedor</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="n">bg_color</span><span class="p">)</span>
+        <span class="c1"># Scrollbar más ancha y color personalizada (opcional)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Scrollbar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contenedor</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">yview</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#cccccc&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scrollable_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scrollable_frame</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="s2">&quot;&lt;Configure&gt;&quot;</span><span class="p">,</span> 
+            <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">scrollregion</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">create_window</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">window</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scrollable_frame</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;nw&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">yscrollcommand</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scrollbar</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Vistahchoco.crear_sector_frames"><a class="viewcode-back" href="../Hchocovista.html#Hchocovista.Vistahchoco.crear_sector_frames">[documentos]</a>    <span class="k">def</span> <span class="nf">crear_sector_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Sectores normales</span>
+        <span class="k">for</span> <span class="n">sector</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sectores</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">turno</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">turnos</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">crear_sector_frame</span><span class="p">(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">agregar_fila</span><span class="p">(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)</span>
+
+        <span class="c1"># Sectores especiales</span>
+        <span class="k">for</span> <span class="n">sector</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sectores_especiales</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">turno</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">turnos_especiales</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">crear_sector_frame</span><span class="p">(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">agregar_fila</span><span class="p">(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vistahchoco.crear_sector_frame"><a class="viewcode-back" href="../Hchocovista.html#Hchocovista.Vistahchoco.crear_sector_frame">[documentos]</a>    <span class="k">def</span> <span class="nf">crear_sector_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">):</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scrollable_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sector</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">turno</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                              <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Segoe UI&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;bold&quot;</span><span class="p">),</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;#004080&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>
+        <span class="n">frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sector_frames</span><span class="p">[(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)]</span> <span class="o">=</span> <span class="n">frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filas_widgets</span><span class="p">[(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">agregar_btn</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;+ Agregar operario&quot;</span><span class="p">,</span>
+                                 <span class="n">command</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="o">=</span><span class="n">sector</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">turno</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">agregar_fila</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+        <span class="n">agregar_btn</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vistahchoco.agregar_fila"><a class="viewcode-back" href="../Hchocovista.html#Hchocovista.Vistahchoco.agregar_fila">[documentos]</a>    <span class="k">def</span> <span class="nf">agregar_fila</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">,</span> <span class="n">id_val</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">operario</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">nombres_operarios</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nombres_operarios</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nombres_operarios</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">nombres_operarios</span>
+
+        <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sector_frames</span><span class="p">[(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)]</span>
+        <span class="n">fila_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>
+        <span class="n">fila_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">fila_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;ID:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Segoe UI&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        <span class="n">id_entry</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">fila_frame</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Segoe UI&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+        <span class="n">id_entry</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+        <span class="n">id_entry</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">id_val</span><span class="p">))</span>
+
+        <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">fila_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Operario:&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Segoe UI&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+        <span class="n">operario_cb</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">fila_frame</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Segoe UI&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                                   <span class="n">values</span><span class="o">=</span><span class="n">nombres_operarios</span><span class="p">)</span>
+        <span class="n">operario_cb</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">operario_cb</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">operario</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">filas_widgets</span><span class="p">[(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">id_entry</span><span class="p">,</span> <span class="n">operario_cb</span><span class="p">))</span>
+
+        <span class="n">eliminar_btn</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">fila_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Eliminar&quot;</span><span class="p">,</span>
+                                  <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">controlador</span><span class="o">.</span><span class="n">eliminar_fila</span><span class="p">(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">,</span> <span class="n">id_entry</span><span class="p">,</span> <span class="n">operario_cb</span><span class="p">,</span> <span class="n">fila_frame</span><span class="p">))</span>
+        <span class="n">eliminar_btn</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor .</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

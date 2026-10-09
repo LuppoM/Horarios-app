@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hgolocontrolador &mdash; documentación de Python - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">Hgolocontrolador</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para Hgolocontrolador</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">hgolomodelo</span> <span class="kn">import</span> <span class="n">ModeloHGolo</span>
+<span class="kn">from</span> <span class="nn">Hgolovista</span> <span class="kn">import</span> <span class="n">VistaHGolo</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">reportlab.lib.pagesizes</span> <span class="kn">import</span> <span class="n">A4</span>
+<span class="kn">from</span> <span class="nn">reportlab.platypus</span> <span class="kn">import</span> <span class="n">SimpleDocTemplate</span><span class="p">,</span> <span class="n">Paragraph</span><span class="p">,</span> <span class="n">Spacer</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">TableStyle</span>
+<span class="kn">from</span> <span class="nn">reportlab.lib</span> <span class="kn">import</span> <span class="n">colors</span>
+<span class="kn">from</span> <span class="nn">reportlab.lib.styles</span> <span class="kn">import</span> <span class="n">getSampleStyleSheet</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">messagebox</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<div class="viewcode-block" id="Controladorhgolo"><a class="viewcode-back" href="../Hgolocontrolador.html#Hgolocontrolador.Controladorhgolo">[documentos]</a><span class="k">class</span> <span class="nc">Controladorhgolo</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">conexion</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span> <span class="o">=</span> <span class="n">ModeloHGolo</span><span class="p">(</span><span class="n">conexion</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
+
+        <span class="c1"># obtiene operarios del modelo como diccionario {id: nombre}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operarios_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">obtener_operarios</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombres_operarios</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operarios_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+        <span class="c1"># Crear la vista</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vista</span> <span class="o">=</span> <span class="n">VistaHGolo</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># Carga semana actual al inicio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cargar_semana</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Controladorhgolo.obtener_semana_actual"><a class="viewcode-back" href="../Hgolocontrolador.html#Hgolocontrolador.Controladorhgolo.obtener_semana_actual">[documentos]</a>    <span class="k">def</span> <span class="nf">obtener_semana_actual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="Controladorhgolo.cargar_semana"><a class="viewcode-back" href="../Hgolocontrolador.html#Hgolocontrolador.Controladorhgolo.cargar_semana">[documentos]</a>    <span class="k">def</span> <span class="nf">cargar_semana</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">semana</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">semana_var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">datos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">obtener_datos_semana</span><span class="p">(</span><span class="n">semana</span><span class="p">)</span>
+
+        <span class="c1"># Limpia filas existentes</span>
+        <span class="k">for</span> <span class="n">filas</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">filas_widgets</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">id_entry</span><span class="p">,</span> <span class="n">operario_cb</span> <span class="ow">in</span> <span class="n">filas</span><span class="p">:</span>
+                <span class="n">id_entry</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">filas_widgets</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">filas_widgets</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+
+        <span class="c1"># Operarios asignados en otros sectores</span>
+        <span class="n">operarios_asignados</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">obtener_operarios_asignados_en_otro_sector</span><span class="p">(</span><span class="n">semana</span><span class="p">)</span>
+
+        <span class="c1"># Agrega filas con datos y operarios disponibles</span>
+        <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">datos</span><span class="p">:</span>
+            <span class="n">id_val</span><span class="p">,</span> <span class="n">operario</span><span class="p">,</span> <span class="n">horario</span><span class="p">,</span> <span class="n">sector</span> <span class="o">=</span> <span class="n">fila</span>
+            <span class="n">nombres_disponibles</span> <span class="o">=</span> <span class="p">[</span><span class="n">op</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombres_operarios</span>
+                                   <span class="k">if</span> <span class="n">op</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">operarios_asignados</span> <span class="ow">or</span> <span class="n">op</span> <span class="o">==</span> <span class="n">operario</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">agregar_fila</span><span class="p">(</span><span class="n">sector</span><span class="p">,</span> <span class="n">horario</span><span class="p">,</span> <span class="n">id_val</span><span class="p">,</span> <span class="n">operario</span><span class="p">,</span> <span class="n">nombres_operarios</span><span class="o">=</span><span class="n">nombres_disponibles</span><span class="p">)</span>
+
+        <span class="c1"># Actualiza todos los Combobox</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actualizar_comboboxes</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Controladorhgolo.actualizar_comboboxes"><a class="viewcode-back" href="../Hgolocontrolador.html#Hgolocontrolador.Controladorhgolo.actualizar_comboboxes">[documentos]</a>    <span class="k">def</span> <span class="nf">actualizar_comboboxes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">semana</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">semana_var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">asignados</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">obtener_operarios_asignados_en_otro_sector</span><span class="p">(</span><span class="n">semana</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">filas</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">filas_widgets</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">id_entry</span><span class="p">,</span> <span class="n">cb</span> <span class="ow">in</span> <span class="n">filas</span><span class="p">:</span>
+                <span class="n">actual</span> <span class="o">=</span> <span class="n">cb</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">disponibles</span> <span class="o">=</span> <span class="p">[</span><span class="n">op</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombres_operarios</span> <span class="k">if</span> <span class="n">op</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">asignados</span> <span class="ow">or</span> <span class="n">op</span> <span class="o">==</span> <span class="n">actual</span><span class="p">]</span>
+                <span class="n">cb</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">disponibles</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">actual</span><span class="p">:</span>
+                    <span class="n">cb</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>  <span class="c1"># Mantiene operario asignado si ya tenía valor</span></div>
+
+<div class="viewcode-block" id="Controladorhgolo.guardar_datos"><a class="viewcode-back" href="../Hgolocontrolador.html#Hgolocontrolador.Controladorhgolo.guardar_datos">[documentos]</a>    <span class="k">def</span> <span class="nf">guardar_datos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">semana</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">semana_var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">),</span> <span class="n">filas</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">filas_widgets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">id_entry</span><span class="p">,</span> <span class="n">operario_cb</span> <span class="ow">in</span> <span class="n">filas</span><span class="p">:</span>
+                <span class="n">id_val</span> <span class="o">=</span> <span class="n">id_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">operario</span> <span class="o">=</span> <span class="n">operario_cb</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">id_val</span> <span class="ow">and</span> <span class="n">operario</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">guardar_operario</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">id_val</span><span class="p">),</span> <span class="n">operario</span><span class="p">,</span> <span class="n">turno</span><span class="p">,</span> <span class="n">sector</span><span class="p">,</span> <span class="n">semana</span><span class="p">)</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Guardado&quot;</span><span class="p">,</span> <span class="s2">&quot;Datos actualizados correctamente.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cargar_semana</span><span class="p">()</span>  <span class="c1"># Recarga para mantener consistencia</span></div>
+
+<div class="viewcode-block" id="Controladorhgolo.eliminar_fila"><a class="viewcode-back" href="../Hgolocontrolador.html#Hgolocontrolador.Controladorhgolo.eliminar_fila">[documentos]</a>    <span class="k">def</span> <span class="nf">eliminar_fila</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">,</span> <span class="n">id_entry</span><span class="p">,</span> <span class="n">operario_cb</span><span class="p">,</span> <span class="n">fila_frame</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">id_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">id_entry</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">modelo</span><span class="o">.</span><span class="n">limpiar_operario</span><span class="p">(</span><span class="n">id_val</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">fila_frame</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">filas_widgets</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">filas_widgets</span><span class="p">[(</span><span class="n">sector</span><span class="p">,</span> <span class="n">turno</span><span class="p">)]</span><span class="o">.</span><span class="n">remove</span><span class="p">((</span><span class="n">id_entry</span><span class="p">,</span> <span class="n">operario_cb</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">actualizar_comboboxes</span><span class="p">()</span>  <span class="c1"># Actualiza operarios disponibles</span></div>
+
+<div class="viewcode-block" id="Controladorhgolo.exportar_a_pdf"><a class="viewcode-back" href="../Hgolocontrolador.html#Hgolocontrolador.Controladorhgolo.exportar_a_pdf">[documentos]</a>    <span class="k">def</span> <span class="nf">exportar_a_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">semana_texto</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">semana_var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">semana_texto</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Aviso&quot;</span><span class="p">,</span> <span class="s2">&quot;Debes seleccionar el número de semana.&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+            <span class="n">carpeta_destino</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">HUGO-PC5\Compartir\PRODUCTIVIDADnueva\Horarios&quot;</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">carpeta_destino</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">nombre_archivo</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Horarios golosinas semana </span><span class="si">{</span><span class="n">semana_texto</span><span class="si">}</span><span class="s2">.pdf&quot;</span>
+            <span class="n">archivo_pdf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">carpeta_destino</span><span class="p">,</span> <span class="n">nombre_archivo</span><span class="p">)</span>
+
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">SimpleDocTemplate</span><span class="p">(</span><span class="n">archivo_pdf</span><span class="p">,</span> <span class="n">pagesize</span><span class="o">=</span><span class="n">A4</span><span class="p">)</span>
+            <span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">styles</span> <span class="o">=</span> <span class="n">getSampleStyleSheet</span><span class="p">()</span>
+
+            <span class="n">titulo</span> <span class="o">=</span> <span class="n">Paragraph</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;Semana </span><span class="si">{</span><span class="n">semana_texto</span><span class="si">}</span><span class="s2"> - PLANTA DE GOLOSINAS&lt;/b&gt;&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">])</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">titulo</span><span class="p">)</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+            <span class="n">sectores_operarios</span> <span class="o">=</span> <span class="p">{}</span>
+
+            <span class="c1"># Organiza datos por sector y turno</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">sector_nombre</span><span class="p">,</span> <span class="n">turno</span><span class="p">),</span> <span class="n">filas</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vista</span><span class="o">.</span><span class="n">filas_widgets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">sector_nombre</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sectores_operarios</span><span class="p">:</span>
+                    <span class="n">sectores_operarios</span><span class="p">[</span><span class="n">sector_nombre</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">if</span> <span class="n">turno</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sectores_operarios</span><span class="p">[</span><span class="n">sector_nombre</span><span class="p">]:</span>
+                    <span class="n">sectores_operarios</span><span class="p">[</span><span class="n">sector_nombre</span><span class="p">][</span><span class="n">turno</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="k">for</span> <span class="n">id_entry</span><span class="p">,</span> <span class="n">operario_cb</span> <span class="ow">in</span> <span class="n">filas</span><span class="p">:</span>
+                    <span class="n">operario</span> <span class="o">=</span> <span class="n">operario_cb</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">operario</span><span class="p">:</span>
+                        <span class="n">sectores_operarios</span><span class="p">[</span><span class="n">sector_nombre</span><span class="p">][</span><span class="n">turno</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operario</span><span class="p">)</span>
+
+            <span class="c1"># Genera tablas PDF</span>
+            <span class="k">for</span> <span class="n">sector_nombre</span><span class="p">,</span> <span class="n">turnos</span> <span class="ow">in</span> <span class="n">sectores_operarios</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">lista</span> <span class="ow">in</span> <span class="n">turnos</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+                    <span class="k">continue</span>
+
+                <span class="n">sector_titulo</span> <span class="o">=</span> <span class="n">Paragraph</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">sector_nombre</span><span class="si">}</span><span class="s2">&lt;/b&gt;&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s1">&#39;Heading2&#39;</span><span class="p">])</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sector_titulo</span><span class="p">)</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+                <span class="n">columnas</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">turnos</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">columnas</span><span class="p">]</span>
+                <span class="n">max_filas</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">turnos</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">columnas</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_filas</span><span class="p">):</span>
+                    <span class="n">fila</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">columnas</span><span class="p">:</span>
+                        <span class="n">fila</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">turnos</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">turnos</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>
+
+                <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">colWidths</span><span class="o">=</span><span class="p">[</span><span class="mi">180</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">columnas</span><span class="p">))</span>
+                <span class="n">table</span><span class="o">.</span><span class="n">setStyle</span><span class="p">(</span><span class="n">TableStyle</span><span class="p">([</span>
+                    <span class="p">(</span><span class="s1">&#39;BACKGROUND&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">colors</span><span class="o">.</span><span class="n">lightblue</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s1">&#39;FONTNAME&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s1">&#39;GRID&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">colors</span><span class="o">.</span><span class="n">grey</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s1">&#39;ALIGN&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;CENTER&#39;</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s1">&#39;VALIGN&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;TOP&#39;</span><span class="p">),</span>
+                    <span class="p">(</span><span class="s1">&#39;FONTNAME&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;Helvetica&#39;</span><span class="p">),</span>
+                <span class="p">]))</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+            <span class="n">doc</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;PDF guardado como:</span><span class="se">\n</span><span class="si">{</span><span class="n">archivo_pdf</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Ocurrió un error al exportar: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor .</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>principalvista &mdash; documentación de Python - </title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Python
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">principalvista</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para principalvista</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageTk</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">conexion</span> <span class="kn">import</span> <span class="n">obtener_ruta_icono</span>
+
+<div class="viewcode-block" id="vistaprincipal"><a class="viewcode-back" href="../principalvista.html#principalvista.vistaprincipal">[documentos]</a><span class="k">class</span> <span class="nc">vistaprincipal</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vista principal: interfaz Tkinter y estilos.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ARMADO DE HORARIOS&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;1920x1080&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="n">obtener_ruta_icono</span><span class="p">(</span><span class="s2">&quot;icono.ico&quot;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">aplicar_estilo</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crear_widgets</span><span class="p">()</span>
+
+<div class="viewcode-block" id="vistaprincipal.aplicar_estilo"><a class="viewcode-back" href="../principalvista.html#principalvista.vistaprincipal.aplicar_estilo">[documentos]</a>    <span class="k">def</span> <span class="nf">aplicar_estilo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">style</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">style</span><span class="o">.</span><span class="n">theme_use</span><span class="p">(</span><span class="s2">&quot;clam&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;#f0f4f8&quot;</span><span class="p">)</span>
+
+        <span class="n">style</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s1">&#39;Custom.TButton&#39;</span><span class="p">,</span>
+                        <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Segoe UI&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;bold&#39;</span><span class="p">),</span>
+                        <span class="n">padding</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+                        <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#004080&#39;</span><span class="p">,</span>
+                        <span class="n">background</span><span class="o">=</span><span class="s1">&#39;#cce6ff&#39;</span><span class="p">,</span>
+                        <span class="n">borderwidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                        <span class="n">relief</span><span class="o">=</span><span class="s2">&quot;raised&quot;</span><span class="p">)</span>
+        <span class="n">style</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s1">&#39;Custom.TButton&#39;</span><span class="p">,</span>
+                  <span class="n">background</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="s1">&#39;#99ccff&#39;</span><span class="p">)],</span>
+                  <span class="n">foreground</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="s1">&#39;#00264d&#39;</span><span class="p">)])</span>
+        <span class="n">style</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s1">&#39;TLabel&#39;</span><span class="p">,</span>
+                        <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Segoe UI&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;bold&#39;</span><span class="p">),</span>
+                        <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;#003366&#39;</span><span class="p">,</span>
+                        <span class="n">background</span><span class="o">=</span><span class="s2">&quot;#f0f4f8&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="vistaprincipal.crear_widgets"><a class="viewcode-back" href="../principalvista.html#principalvista.vistaprincipal.crear_widgets">[documentos]</a>    <span class="k">def</span> <span class="nf">crear_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Frame principal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fondo_frame</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fondo_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Botonera</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fondo_frame</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;TFrame&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">button_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">TOP</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+        <span class="c1"># Imagen de fondo</span>
+        <span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="n">fondo_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="s2">&quot;fondo.jpg&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fondo_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fondo_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fondo_frame</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fondo_label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fondo_label</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;Configure&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">redimensionar_imagen</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="vistaprincipal.redimensionar_imagen"><a class="viewcode-back" href="../principalvista.html#principalvista.vistaprincipal.redimensionar_imagen">[documentos]</a>    <span class="k">def</span> <span class="nf">redimensionar_imagen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="n">nueva</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">original</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">event</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fondo_label</span><span class="o">.</span><span class="n">img</span> <span class="o">=</span> <span class="n">ImageTk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">nueva</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fondo_label</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fondo_label</span><span class="o">.</span><span class="n">img</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="vistaprincipal.agregar_botonera"><a class="viewcode-back" href="../principalvista.html#principalvista.vistaprincipal.agregar_botonera">[documentos]</a>    <span class="k">def</span> <span class="nf">agregar_botonera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">botones</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Recibe lista de tuplas (texto, comando) y las agrega a la botonera.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">comando</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">botones</span><span class="p">):</span>
+            <span class="n">btn</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">button_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">texto</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">comando</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;Custom.TButton&#39;</span><span class="p">)</span>
+            <span class="n">btn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;nsew&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">button_frame</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor .</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
